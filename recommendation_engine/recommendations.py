@@ -1,21 +1,19 @@
-import os
-import re
-from docx import Document
-import csv
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-import sys
-import helpers
-
+from helpers import Parser
 
 class Recommendations():
+    """Builds NLP model from questions to test recommendations"""
 
     def __init__(self, model_type='msmarco-distilbert-base-v4'):
         self.model_type = model_type
         self.model = SentenceTransformer('msmarco-distilbert-base-v4')
+        self.sentences = None
+        self.sentence_array = None
+        self.sentence_embeddings = None
 
-    def build_model(self, sentences=[]):
+    def build_model(self, sentences):
         self.sentences = sentences
         self.sentence_array = np.asarray(sentences)
         self.sentence_embeddings = self.model.encode(sentences)
@@ -36,7 +34,7 @@ class Recommendations():
 
 
 def main():
-    parser = helpers.Parser('data/afme.docx')
+    parser = Parser('data/afme.docx')
     parser.parse_questions()
     recommend = Recommendations()
     recommend.build_model(parser.get_question_text())

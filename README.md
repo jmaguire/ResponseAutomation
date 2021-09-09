@@ -6,11 +6,16 @@ Uses sentence transformers from https://www.sbert.net/index.html and defaults to
 ## Usage
 1. Install the requirements and run setup.py
 
-2. Run recommendations.py
+2. Navigate to recommendation_engine because lazy
+
+``` cd recommendation_engine ```
+
+3. Run recommendations.py
 
 ``` python3 recommendations.py ```
 
-3. Enter search text and see results
+4. Enter search text and see results
+
 ```
 Enter question text: data security policy
 47.5%: Do you have a data security policy? If yes, please attach or provide details.

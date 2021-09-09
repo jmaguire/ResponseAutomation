@@ -1,5 +1,4 @@
 from docx import Document
-import numpy as np
 import csv
 import re
 import argparse
@@ -8,7 +7,7 @@ import argparse
 class Parser():
     def __init__(self, filename):
         self.filename = filename
-        self.document = document = Document(filename)
+        self.document = Document(filename)
         self.question_numbers = []
         self.question_text = []
         self.question_array = []
@@ -27,8 +26,8 @@ class Parser():
                 self.question_array.append([question_number, question_text])
 
     def save_to_csv(self, filename):
-        with open(filename, 'w') as f:
-            csv.writer(f).writerows(self.question_array)
+        with open(filename, 'w') as out_file:
+            csv.writer(out_file).writerows(self.question_array)
 
     def get_question_text(self):
         return self.question_text
